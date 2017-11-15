@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ECA846161FBC4243003C43F1 /* moviesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA846151FBC4243003C43F1 /* moviesListTableViewController.swift */; };
+		ECA846181FBC42F8003C43F1 /* movieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA846171FBC42F8003C43F1 /* movieTableViewCell.swift */; };
+		ECD6B2631FB3125C00D2529C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B2621FB3125C00D2529C /* AppDelegate.swift */; };
+		ECD6B2651FB3125C00D2529C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B2641FB3125C00D2529C /* ViewController.swift */; };
+		ECD6B2681FB3125C00D2529C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECD6B2661FB3125C00D2529C /* Main.storyboard */; };
+		ECD6B26A1FB3125C00D2529C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD6B2691FB3125C00D2529C /* Assets.xcassets */; };
+		ECD6B26D1FB3125C00D2529C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECD6B26B1FB3125C00D2529C /* LaunchScreen.storyboard */; };
+		ECD6B2811FB31E7000D2529C /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B2761FB31E6E00D2529C /* FMDatabasePool.m */; };
+		ECD6B2821FB31E7000D2529C /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B2781FB31E6E00D2529C /* FMDatabaseQueue.m */; };
+		ECD6B2831FB31E7000D2529C /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B2791FB31E6E00D2529C /* FMResultSet.m */; };
+		ECD6B2841FB31E7000D2529C /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B27C1FB31E6F00D2529C /* FMDatabase.m */; };
+		ECD6B2851FB31E7000D2529C /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B27F1FB31E6F00D2529C /* FMDatabaseAdditions.m */; };
+		ECD6B2871FB31EED00D2529C /* Db.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B2861FB31EED00D2529C /* Db.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		ECA846151FBC4243003C43F1 /* moviesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moviesListTableViewController.swift; sourceTree = "<group>"; };
+		ECA846171FBC42F8003C43F1 /* movieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieTableViewCell.swift; sourceTree = "<group>"; };
+		ECD6B25F1FB3125C00D2529C /* movieTickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movieTickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECD6B2621FB3125C00D2529C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ECD6B2641FB3125C00D2529C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ECD6B2671FB3125C00D2529C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ECD6B2691FB3125C00D2529C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ECD6B26C1FB3125C00D2529C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ECD6B26E1FB3125C00D2529C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECD6B2751FB31E6D00D2529C /* movieTickets-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "movieTickets-Bridging-Header.h"; sourceTree = "<group>"; };
+		ECD6B2761FB31E6E00D2529C /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDatabasePool.m"; sourceTree = "<group>"; };
+		ECD6B2771FB31E6E00D2529C /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDB.h"; sourceTree = "<group>"; };
+		ECD6B2781FB31E6E00D2529C /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDatabaseQueue.m"; sourceTree = "<group>"; };
+		ECD6B2791FB31E6E00D2529C /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMResultSet.m"; sourceTree = "<group>"; };
+		ECD6B27A1FB31E6F00D2529C /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDatabase.h"; sourceTree = "<group>"; };
+		ECD6B27B1FB31E6F00D2529C /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMResultSet.h"; sourceTree = "<group>"; };
+		ECD6B27C1FB31E6F00D2529C /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDatabase.m"; sourceTree = "<group>"; };
+		ECD6B27D1FB31E6F00D2529C /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDatabasePool.h"; sourceTree = "<group>"; };
+		ECD6B27E1FB31E6F00D2529C /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDatabaseQueue.h"; sourceTree = "<group>"; };
+		ECD6B27F1FB31E6F00D2529C /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDatabaseAdditions.m"; sourceTree = "<group>"; };
+		ECD6B2801FB31E6F00D2529C /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDatabaseAdditions.h"; sourceTree = "<group>"; };
+		ECD6B2861FB31EED00D2529C /* Db.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Db.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ECD6B25C1FB3125C00D2529C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ECD6B2561FB3125B00D2529C = {
+			isa = PBXGroup;
+			children = (
+				ECD6B2611FB3125C00D2529C /* movieTickets */,
+				ECD6B2601FB3125C00D2529C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ECD6B2601FB3125C00D2529C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECD6B25F1FB3125C00D2529C /* movieTickets.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECD6B2611FB3125C00D2529C /* movieTickets */ = {
+			isa = PBXGroup;
+			children = (
+				ECD6B2741FB31DF300D2529C /* FMDB */,
+				ECD6B2621FB3125C00D2529C /* AppDelegate.swift */,
+				ECD6B2641FB3125C00D2529C /* ViewController.swift */,
+				ECA846151FBC4243003C43F1 /* moviesListTableViewController.swift */,
+				ECA846171FBC42F8003C43F1 /* movieTableViewCell.swift */,
+				ECD6B2861FB31EED00D2529C /* Db.swift */,
+				ECD6B2661FB3125C00D2529C /* Main.storyboard */,
+				ECD6B2691FB3125C00D2529C /* Assets.xcassets */,
+				ECD6B26B1FB3125C00D2529C /* LaunchScreen.storyboard */,
+				ECD6B26E1FB3125C00D2529C /* Info.plist */,
+			);
+			path = movieTickets;
+			sourceTree = "<group>";
+		};
+		ECD6B2741FB31DF300D2529C /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				ECD6B27A1FB31E6F00D2529C /* FMDatabase.h */,
+				ECD6B27C1FB31E6F00D2529C /* FMDatabase.m */,
+				ECD6B2801FB31E6F00D2529C /* FMDatabaseAdditions.h */,
+				ECD6B27F1FB31E6F00D2529C /* FMDatabaseAdditions.m */,
+				ECD6B27D1FB31E6F00D2529C /* FMDatabasePool.h */,
+				ECD6B2761FB31E6E00D2529C /* FMDatabasePool.m */,
+				ECD6B27E1FB31E6F00D2529C /* FMDatabaseQueue.h */,
+				ECD6B2781FB31E6E00D2529C /* FMDatabaseQueue.m */,
+				ECD6B2771FB31E6E00D2529C /* FMDB.h */,
+				ECD6B27B1FB31E6F00D2529C /* FMResultSet.h */,
+				ECD6B2791FB31E6E00D2529C /* FMResultSet.m */,
+				ECD6B2751FB31E6D00D2529C /* movieTickets-Bridging-Header.h */,
+			);
+			path = FMDB;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ECD6B25E1FB3125C00D2529C /* movieTickets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECD6B2711FB3125C00D2529C /* Build configuration list for PBXNativeTarget "movieTickets" */;
+			buildPhases = (
+				ECD6B25B1FB3125C00D2529C /* Sources */,
+				ECD6B25C1FB3125C00D2529C /* Frameworks */,
+				ECD6B25D1FB3125C00D2529C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = movieTickets;
+			productName = movieTickets;
+			productReference = ECD6B25F1FB3125C00D2529C /* movieTickets.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECD6B2571FB3125C00D2529C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = MikkoS;
+				TargetAttributes = {
+					ECD6B25E1FB3125C00D2529C = {
+						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = ECD6B25A1FB3125C00D2529C /* Build configuration list for PBXProject "movieTickets" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ECD6B2561FB3125B00D2529C;
+			productRefGroup = ECD6B2601FB3125C00D2529C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECD6B25E1FB3125C00D2529C /* movieTickets */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ECD6B25D1FB3125C00D2529C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECD6B26D1FB3125C00D2529C /* LaunchScreen.storyboard in Resources */,
+				ECD6B26A1FB3125C00D2529C /* Assets.xcassets in Resources */,
+				ECD6B2681FB3125C00D2529C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ECD6B25B1FB3125C00D2529C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECD6B2651FB3125C00D2529C /* ViewController.swift in Sources */,
+				ECD6B2871FB31EED00D2529C /* Db.swift in Sources */,
+				ECD6B2821FB31E7000D2529C /* FMDatabaseQueue.m in Sources */,
+				ECD6B2811FB31E7000D2529C /* FMDatabasePool.m in Sources */,
+				ECA846161FBC4243003C43F1 /* moviesListTableViewController.swift in Sources */,
+				ECD6B2841FB31E7000D2529C /* FMDatabase.m in Sources */,
+				ECD6B2631FB3125C00D2529C /* AppDelegate.swift in Sources */,
+				ECD6B2851FB31E7000D2529C /* FMDatabaseAdditions.m in Sources */,
+				ECA846181FBC42F8003C43F1 /* movieTableViewCell.swift in Sources */,
+				ECD6B2831FB31E7000D2529C /* FMResultSet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		ECD6B2661FB3125C00D2529C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECD6B2671FB3125C00D2529C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ECD6B26B1FB3125C00D2529C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECD6B26C1FB3125C00D2529C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ECD6B26F1FB3125C00D2529C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ECD6B2701FB3125C00D2529C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ECD6B2721FB3125C00D2529C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TVTFK2J7GJ;
+				INFOPLIST_FILE = movieTickets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = None.movieTickets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "movieTickets/FMDB/movieTickets-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ECD6B2731FB3125C00D2529C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TVTFK2J7GJ;
+				INFOPLIST_FILE = movieTickets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = None.movieTickets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "movieTickets/FMDB/movieTickets-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECD6B25A1FB3125C00D2529C /* Build configuration list for PBXProject "movieTickets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECD6B26F1FB3125C00D2529C /* Debug */,
+				ECD6B2701FB3125C00D2529C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECD6B2711FB3125C00D2529C /* Build configuration list for PBXNativeTarget "movieTickets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECD6B2721FB3125C00D2529C /* Debug */,
+				ECD6B2731FB3125C00D2529C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ECD6B2571FB3125C00D2529C /* Project object */;
+}
