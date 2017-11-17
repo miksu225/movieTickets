@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		ECA846161FBC4243003C43F1 /* moviesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA846151FBC4243003C43F1 /* moviesListTableViewController.swift */; };
 		ECA846181FBC42F8003C43F1 /* movieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA846171FBC42F8003C43F1 /* movieTableViewCell.swift */; };
+		ECA8461A1FBC4FA8003C43F1 /* JsonClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA846191FBC4FA8003C43F1 /* JsonClasses.swift */; };
 		ECD6B2631FB3125C00D2529C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B2621FB3125C00D2529C /* AppDelegate.swift */; };
 		ECD6B2651FB3125C00D2529C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B2641FB3125C00D2529C /* ViewController.swift */; };
 		ECD6B2681FB3125C00D2529C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECD6B2661FB3125C00D2529C /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		ECA846151FBC4243003C43F1 /* moviesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moviesListTableViewController.swift; sourceTree = "<group>"; };
 		ECA846171FBC42F8003C43F1 /* movieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieTableViewCell.swift; sourceTree = "<group>"; };
+		ECA846191FBC4FA8003C43F1 /* JsonClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonClasses.swift; sourceTree = "<group>"; };
 		ECD6B25F1FB3125C00D2529C /* movieTickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movieTickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECD6B2621FB3125C00D2529C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECD6B2641FB3125C00D2529C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				ECD6B2621FB3125C00D2529C /* AppDelegate.swift */,
 				ECD6B2641FB3125C00D2529C /* ViewController.swift */,
 				ECA846151FBC4243003C43F1 /* moviesListTableViewController.swift */,
+				ECA846191FBC4FA8003C43F1 /* JsonClasses.swift */,
 				ECA846171FBC42F8003C43F1 /* movieTableViewCell.swift */,
 				ECD6B2861FB31EED00D2529C /* Db.swift */,
 				ECD6B2661FB3125C00D2529C /* Main.storyboard */,
@@ -186,6 +189,7 @@
 				ECD6B2651FB3125C00D2529C /* ViewController.swift in Sources */,
 				ECD6B2871FB31EED00D2529C /* Db.swift in Sources */,
 				ECD6B2821FB31E7000D2529C /* FMDatabaseQueue.m in Sources */,
+				ECA8461A1FBC4FA8003C43F1 /* JsonClasses.swift in Sources */,
 				ECD6B2811FB31E7000D2529C /* FMDatabasePool.m in Sources */,
 				ECA846161FBC4243003C43F1 /* moviesListTableViewController.swift in Sources */,
 				ECD6B2841FB31E7000D2529C /* FMDatabase.m in Sources */,
