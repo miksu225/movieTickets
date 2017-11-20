@@ -35,11 +35,10 @@ class moviesListTableViewController: UITableViewController{
             db.close()
         }
         
-        DispatchQueue.main.async {
             self.webrequest(completion: {
                 config in
                 self.config = config
-                print(self.config.images.poster_sizes)
+                //print(self.config.images.poster_sizes)
             })
             for id in self.moviesId {
                 self.dispatchGroup.enter()
@@ -54,19 +53,15 @@ class moviesListTableViewController: UITableViewController{
                         self.movieImages.append(image)
                         print("kuva lisätty arrayhin")
                         print(image)
+                        self.dispatchGroup.leave()
                         
                     })
-                    self.dispatchGroup.leave()
                     
-                    
-
-                   
                 })
                 
             }
-            self.dispatchGroup.wait()
-        }
         
+         self.dispatchGroup.wait()
         
         dispatchGroup.notify(queue: .main) {
                 print("loadataan")
@@ -75,11 +70,6 @@ class moviesListTableViewController: UITableViewController{
             
             }
       
-        /*DispatchQueue.main.async {
-            print("looudataan")
-            self.tableView.reloadData()
-        }
-        */
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -222,10 +212,13 @@ class moviesListTableViewController: UITableViewController{
         if !movies.isEmpty {
             cell.labelMovie.text = movies[indexPath.row].original_title
         }
-        
+
+
         if !movieImages.isEmpty {
             print("kuva lisätään imageviewiin")
             cell.imageMovie.image = movieImages[indexPath.row]
+            tableView.rowHeight = (cell.imageMovie.image?.size.height)! + 60
+            //tableView.rowHeight = 300
         }
         
         
@@ -278,14 +271,16 @@ class moviesListTableViewController: UITableViewController{
     }
     */
 
-    /*
+    
     // MARK: - Navigation
+    
+    
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }

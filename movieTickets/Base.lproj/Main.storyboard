@@ -41,7 +41,7 @@
                                 <connections>
                                     <outlet property="imageMovie" destination="3A8-ZI-dXt" id="Yfr-oB-wsi"/>
                                     <outlet property="labelMovie" destination="w5O-Uj-29X" id="rhg-bA-BUi"/>
-                                    <segue destination="80g-Zn-jPR" kind="presentation" id="c7L-Wi-ONp"/>
+                                    <segue destination="80g-Zn-jPR" kind="presentation" modalTransitionStyle="flipHorizontal" id="c7L-Wi-ONp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -71,10 +71,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vvc-f4-JlD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="LVo-ee-1bE">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="zv8-H5-yfe" userLabel="Back"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="8Sl-Of-IGu"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uad-Kn-q3M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
