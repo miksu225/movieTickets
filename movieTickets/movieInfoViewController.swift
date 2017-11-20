@@ -10,6 +10,9 @@ import UIKit
 
 class movieInfoViewController: UIViewController {
 
+    @IBAction func rewindToMovieList(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

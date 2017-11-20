@@ -16,7 +16,7 @@ class moviesListTableViewController: UITableViewController{
     var movies : [Movie] = []
     var movieImages : [UIImage] = []
     var config : Images = Images()
-    let api_key = "85026d9e96590ed29d1fdc6d9d4c2713"
+    let api_key = ""
     let urlSession = URLSession.shared
     let dispatchGroup = DispatchGroup()
     let decoder = JSONDecoder()

@@ -13,12 +13,14 @@ struct Movie : Codable {
     let original_title : String
     let release_date : String
     let poster_path : String
+    let overview : String
     
     init() {
         self.id = 0
         self.original_title = ""
         self.release_date = ""
         self.poster_path = ""
+        self.overview = ""
     }
 
 }
