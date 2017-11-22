@@ -1,20 +1,17 @@
 //
-//  movieTableViewCell.swift
+//  showsListTableViewCell.swift
 //  movieTickets
 //
-//  Created by Koulutus on 15.11.2017.
+//  Created by Koulutus on 20.11.2017.
 //  Copyright © 2017 MikkoS. All rights reserved.
 //
 
 import UIKit
 
-class movieTableViewCell: UITableViewCell {
+class showsListTableViewCell: UITableViewCell {
 
-
-    @IBOutlet weak var labelMovie: UILabel!
-    @IBOutlet weak var imageMovie: UIImageView!
-
-    
+    @IBOutlet weak var labelShowStartDay: UILabel!
+    @IBOutlet weak var labelShowStartTime: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

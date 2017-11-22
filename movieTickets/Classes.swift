@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct Movie : Codable {
     let id : Int
     let original_title : String
@@ -40,6 +41,20 @@ struct Config : Codable {
     init() {
         self.secure_base_url = ""
         self.poster_sizes = []
+    }
+}
+
+class Show {
+    var theaterid : Int
+    var startday : String
+    var starttime : String
+    var endtime : String
+    
+    init(theaterid : Int, startday: String, starttime : String, endtime : String) {
+        self.theaterid = theaterid
+        self.startday = startday
+        self.starttime = starttime
+        self.endtime = endtime
     }
 }
 

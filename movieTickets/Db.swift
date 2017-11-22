@@ -8,26 +8,31 @@
 
 import UIKit
 
+
 class Db {
+    private static let sharedDB = Db("moviedatabase.db")
     var dbname : String
     var dbpath : String
-    var connectiontoFMDB : FMDatabase
+    private var connectiontoFMDB : FMDatabase
     
-    init(dbname: String) {
-        
+    
+     private init(_ dbname: String) {
+        NSLog("INITOIDAAN!!!!")
          self.dbname = dbname
-        
         let pathdummy = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         
         self.dbpath = pathdummy[0].appendingPathComponent(dbname).path
         NSLog(dbpath)
         self.connectiontoFMDB = FMDatabase(path: dbpath)
         if !exists() {
-           creaTablesAndData()
+           createTablesAndData()
         }
         
-
-        
+ 
+    }
+    
+    class func shared() -> Db {
+        return sharedDB
     }
     
     func exists() -> Bool {
@@ -58,15 +63,21 @@ class Db {
          NSLog(connectiontoFMDB.debugDescription)
     }
     
-    func selectstatement(sqlstatement: String) -> FMResultSet {
-        //connectiontoFMDB.executeStatements(sqlstatement)
-        let resultset : FMResultSet = connectiontoFMDB.executeQuery(sqlstatement, withArgumentsIn: [])!
+    func selectstatement(sqlstatement: String) -> FMResultSet? {
+        let resultset : FMResultSet? = connectiontoFMDB.executeQuery(sqlstatement, withArgumentsIn: [])
         NSLog(connectiontoFMDB.debugDescription)
+        //NSLog(connectiontoFMDB.lastErrorMessage())
         
         return resultset
     }
     
-    func creaTablesAndData() {
+    func selecttest() -> FMResultSet? {
+        let resulttest : FMResultSet? = selectstatement(sqlstatement: "select * from shows;")
+        
+        return resulttest
+    }
+    
+    func createTablesAndData() {
 
             if connectiontoFMDB.open() {
                 print("db auki")

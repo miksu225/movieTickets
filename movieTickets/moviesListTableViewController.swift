@@ -11,11 +11,12 @@ import UIKit
 
 class moviesListTableViewController: UITableViewController{
     
-    var db : Db = Db(dbname: "moviedatabase.db")
+    var db = Db.shared()
     var moviesId : [Int] = []
     var movies : [Movie] = []
     var movieImages : [UIImage] = []
     var config : Images = Images()
+    var shows : [Show] = []
     let api_key = ""
     let urlSession = URLSession.shared
     let dispatchGroup = DispatchGroup()
@@ -26,11 +27,23 @@ class moviesListTableViewController: UITableViewController{
         
         if db.exists() {
             if db.open() {
-                let resultset : FMResultSet = db.selectstatement(sqlstatement: "select * from movies;")
+                let resultset : FMResultSet = db.selectstatement(sqlstatement: "select * from movies;")!
                 
                 while resultset.next() {
                     moviesId.append(Int(resultset.int(forColumn: "movieid")))
                 }
+              /*
+                let resultset2 : FMResultSet = db.selectstatement(sqlstatement: "select * from shows where movieid = 550;")!
+                
+                while resultset2.next() {
+                    shows.append(Show(
+                        theaterid: Int(resultset2.int(forColumn: "theaterid")),
+                        startday: resultset2.string(forColumn: "startday")!,
+                      starttime: resultset2.string(forColumn: "starttime")!,
+                      endtime: resultset2.string(forColumn: "endtime")!))
+                }
+                print("SHOW")
+                print(shows)*/
             }
             db.close()
         }
@@ -38,6 +51,7 @@ class moviesListTableViewController: UITableViewController{
             self.webrequest(completion: {
                 config in
                 self.config = config
+                print(self.config.images.secure_base_url)
                 //print(self.config.images.poster_sizes)
             })
             for id in self.moviesId {
@@ -80,8 +94,6 @@ class moviesListTableViewController: UITableViewController{
     }
     func webrequest (_ targetweb : String, completion: @escaping ((_ movie: UIImage) -> Void)) {
         /*REQUEST RATE LIMIT TO https://api.themoviedb.org IS 40 REQUESTS IN 10 SECONDS*/
-        //var returnData : Data = Data()
-        //var movie : Movie = Movie()
         
         //let targetweb : String = "https://api.themoviedb.org/3/configuration?api_key=\(api_key)"
         
@@ -114,8 +126,6 @@ class moviesListTableViewController: UITableViewController{
     
     func webrequest ( completion: @escaping ((_ movie: Images) -> Void)) {
         /*REQUEST RATE LIMIT TO https://api.themoviedb.org IS 40 REQUESTS IN 10 SECONDS*/
-        //var returnData : Data = Data()
-        //var movie : Movie = Movie()
         
         let targetweb : String = "https://api.themoviedb.org/3/configuration?api_key=\(api_key)"
         
@@ -148,8 +158,6 @@ class moviesListTableViewController: UITableViewController{
     
     func webrequest (_ id : Int, completion: @escaping ((_ movie: Movie) -> Void)) {
         /*REQUEST RATE LIMIT TO https://api.themoviedb.org IS 40 REQUESTS IN 10 SECONDS*/
-        //var returnData : Data = Data()
-        //var movie : Movie = Movie()
         
         let targetweb : String = "https://api.themoviedb.org/3/movie/\(id)?api_key=\(api_key)"
         
@@ -280,6 +288,13 @@ class moviesListTableViewController: UITableViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        let target = segue.destination as! movieInfoViewController
+        
+        
+        let movie = self.tableView.indexPathForSelectedRow?.row
+        target.movie = movies[movie!]
+        target.movieImage = movieImages[movie!]
     }
  
 
