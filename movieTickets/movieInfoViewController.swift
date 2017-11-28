@@ -10,12 +10,13 @@ import UIKit
 
 class movieInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let db = Db.shared()
+    //let db = Db.shared()
+    let db = Db("moviedatabase.db")
     var movie : Movie = Movie()
     
     var movieImage : UIImage  = UIImage()
-    //var shows : [Show] = []
-    var shows : [Show] = [Show(theaterid: 1, startday: "2017-01-01", starttime: "14:30:00", endtime: "16:30:00"),Show(theaterid: 2, startday: "2017-01-02", starttime: "14:30:00", endtime: "16:30:00")]
+    var shows : [Show] = []
+    /*var shows : [Show] = [Show(theaterid: 1, startday: "2017-01-01", starttime: "14:30:00", endtime: "16:30:00"),Show(theaterid: 2, startday: "2017-01-02", starttime: "14:30:00", endtime: "16:30:00")]*/
     
     @IBOutlet weak var labelMovieTitle: UILabel!
     @IBOutlet weak var labelMovieOverview: UILabel!
@@ -39,33 +40,32 @@ class movieInfoViewController: UIViewController, UITableViewDataSource, UITableV
             
             if db.open() {
                 
-                let resultset2 : FMResultSet = db.selectstatement(sqlstatement: "select * from shows where movieid = 550;")!
+                let resultset : FMResultSet = db.selectstatement(sqlstatement: "select * from shows,theaters where shows.theaterid = theaters.theaterid and movieid = \(movie.id);")!
                 
-                while resultset2.next() {
-                    shows.append(Show(
-                        theaterid: Int(resultset2.int(forColumn: "theaterid")),
-                        startday: resultset2.string(forColumn: "startday")!,
-                        starttime: resultset2.string(forColumn: "starttime")!,
-                        endtime: resultset2.string(forColumn: "endtime")!))
+                while resultset.next() {
+                    let resultset2 : FMResultSet = db.selectstatement(sqlstatement: "select count(showid) as seatstaken from tickets where showid = \(Int(resultset.int(forColumn: "showid")))")!
+                    
+                    while resultset2.next() {
+                        shows.append(Show(
+                            showid: Int(resultset.int(forColumn: "showid")),
+                            theater: Theater(
+                                theaterid: Int(resultset.int(forColumn: "theaterid")),
+                                name: resultset.string(forColumn: "name")!,
+                                seatstotal: Int(resultset.int(forColumn: "seatstotal"))),
+                            startday: resultset.string(forColumn: "startday")!,
+                            starttime: resultset.string(forColumn: "starttime")!,
+                            endtime: resultset.string(forColumn: "endtime")!,
+                            seatstaken: Int(resultset2.int(forColumn: "seatstaken"))))
+                    }
                 }
-                print("SHOW")
-                print(shows)
                 
-               /* let resultset : FMResultSet? = db.selectstatement(sqlstatement: "select * from shows;")
-                */
                 
-               /* print("isopen: " + String(db.connectiontoFMDB.isOpen))
-                print("tableexists: " + String(db.connectiontoFMDB.tableExists("shows")))
-               */
+
+              /*
+                let resultset : FMResultSet? = db.selectstatement(sqlstatement: "select * from shows;")
                 
-               /* if resultset == nil {
-                    print("tyhjää täynnä")
-                }
-                else {
-                    print("löytyy tavaraa")
-                }
-*/
-                /*while (resultset?.next())! {
+                
+               while (resultset?.next())! {
                     shows.append(Show(
                         theaterid: Int(resultset.int(forColumn: "theaterid")),
                         startday: resultset.string(forColumn: "startday"),

@@ -11,12 +11,13 @@ import UIKit
 
 class moviesListTableViewController: UITableViewController{
     
-    var db = Db.shared()
+    //var db = Db.shared()
+    var db = Db("moviedatabase.db")
     var moviesId : [Int] = []
     var movies : [Movie] = []
     var movieImages : [UIImage] = []
     var config : Images = Images()
-    var shows : [Show] = []
+    var showsNext : [Show] = []
     let api_key = ""
     let urlSession = URLSession.shared
     let dispatchGroup = DispatchGroup()
@@ -32,18 +33,34 @@ class moviesListTableViewController: UITableViewController{
                 while resultset.next() {
                     moviesId.append(Int(resultset.int(forColumn: "movieid")))
                 }
-              /*
-                let resultset2 : FMResultSet = db.selectstatement(sqlstatement: "select * from shows where movieid = 550;")!
                 
-                while resultset2.next() {
-                    shows.append(Show(
-                        theaterid: Int(resultset2.int(forColumn: "theaterid")),
-                        startday: resultset2.string(forColumn: "startday")!,
-                      starttime: resultset2.string(forColumn: "starttime")!,
-                      endtime: resultset2.string(forColumn: "endtime")!))
+                //If you want to next show when compared to time and date now, use
+                //startday >= date('now') and starttime >= time('now')
+                for id in moviesId {
+                    
+                    let resultset2 : FMResultSet = db.selectstatement(sqlstatement: "select * from shows, theaters where shows.theaterid = theaters.theaterid and movieid = \(id) order by startday, starttime asc limit 1;")!
+                    
+                    
+                    while resultset2.next() {
+                         let resultset3 : FMResultSet = db.selectstatement(sqlstatement: "select count(showid) as seatstaken from tickets where showid = \(Int(resultset2.int(forColumn: "showid")))")!
+                        
+                        while resultset3.next() {
+                            showsNext.append(Show(
+                                showid: Int(resultset2.int(forColumn: "showid")),
+                                theater: Theater(
+                                    theaterid: Int(resultset2.int(forColumn: "theaterid")),
+                                    name: resultset2.string(forColumn: "name")!,
+                                    seatstotal: Int(resultset2.int(forColumn: "seatstotal"))),
+                                startday: resultset2.string(forColumn: "startday")!,
+                                starttime: resultset2.string(forColumn: "starttime")!,
+                                endtime: resultset2.string(forColumn: "endtime")!,
+                                seatstaken: Int(resultset3.int(forColumn: "seatstaken"))))
+                        }
+                                            
+                        
+                    }
                 }
-                print("SHOW")
-                print(shows)*/
+
             }
             db.close()
         }
@@ -95,7 +112,6 @@ class moviesListTableViewController: UITableViewController{
     func webrequest (_ targetweb : String, completion: @escaping ((_ movie: UIImage) -> Void)) {
         /*REQUEST RATE LIMIT TO https://api.themoviedb.org IS 40 REQUESTS IN 10 SECONDS*/
         
-        //let targetweb : String = "https://api.themoviedb.org/3/configuration?api_key=\(api_key)"
         
         let targetURL = URL(string: targetweb)
         
@@ -186,9 +202,7 @@ class moviesListTableViewController: UITableViewController{
             }
         })
         dataTask.resume()
-        //print("ulkona")
-       // print(movie)
-        //return movie
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -213,12 +227,14 @@ class moviesListTableViewController: UITableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell_id", for: indexPath) as! movieTableViewCell
         
         
-        let movieId = moviesId[indexPath.row]
-        
 
         print(1)
         if !movies.isEmpty {
             cell.labelMovie.text = movies[indexPath.row].original_title
+            cell.labelStartDate.text = showsNext[indexPath.row].startday
+            cell.labelStartTime.text = showsNext[indexPath.row].starttime
+            cell.labelTheater.text = showsNext[indexPath.row].theater.name
+            cell.labelSeatsLeft.text = String(showsNext[indexPath.row].theater.seatstotal - showsNext[indexPath.row].seatstaken)
         }
 
 

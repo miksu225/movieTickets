@@ -6,17 +6,16 @@
 //  Copyright © 2017 MikkoS. All rights reserved.
 //
 
-import UIKit
-
+import Foundation
 
 class Db {
-    private static let sharedDB = Db("moviedatabase.db")
+    //private static let sharedDB = Db("moviedatabase.db")
     var dbname : String
     var dbpath : String
     private var connectiontoFMDB : FMDatabase
     
     
-     private init(_ dbname: String) {
+      init(_ dbname: String) {
         NSLog("INITOIDAAN!!!!")
          self.dbname = dbname
         let pathdummy = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -31,9 +30,9 @@ class Db {
  
     }
     
-    class func shared() -> Db {
+   /* class func shared() -> Db {
         return sharedDB
-    }
+    }*/
     
     func exists() -> Bool {
         if FileManager.default.fileExists(atPath: dbpath) {
@@ -72,7 +71,7 @@ class Db {
     }
     
     func selecttest() -> FMResultSet? {
-        let resulttest : FMResultSet? = selectstatement(sqlstatement: "select * from shows;")
+        let resulttest : FMResultSet? = selectstatement(sqlstatement: "select * from shows where movieid = 550;")
         
         return resulttest
     }
@@ -105,12 +104,20 @@ class Db {
                 //shows
                 runstatement(sqlstatement: "insert into shows (movieid, theaterid, startday, starttime, endtime) values (550, 1, '2017-01-01', '14:30:00', '16:30:00');")
                 runstatement(sqlstatement: "insert into shows (movieid, theaterid, startday, starttime, endtime) values (550, 2, '2017-01-02', '14:30:00', '16:30:00');")
+                runstatement(sqlstatement: "insert into shows (movieid, theaterid, startday, starttime, endtime) values (550, 1, '2017-01-01', '12:30:00', '14:30:00');")
+                runstatement(sqlstatement: "insert into shows (movieid, theaterid, startday, starttime, endtime) values (550, 1, '2017-01-03', '14:30:00', '16:30:00');")
+                runstatement(sqlstatement: "insert into shows (movieid, theaterid, startday, starttime, endtime) values (550, 1, '2017-01-02', '18:30:00', '20:30:00');")
                 runstatement(sqlstatement: "insert into shows (movieid, theaterid, startday, starttime, endtime) values (284053, 3, '2017-01-01', '13:30:00', '15:30:00');")
                 runstatement(sqlstatement: "insert into shows (movieid, theaterid, startday, starttime, endtime) values (284053, 1, '2017-01-01', '17:00:00', '19:00:00');")
+                runstatement(sqlstatement: "insert into shows (movieid, theaterid, startday, starttime, endtime) values (297762, 1, '2017-01-01', '17:00:00', '19:00:00');")
                 
                 //tickets
-                runstatement(sqlstatement: "insert into tickets (showid, userid) values (1, 1)")
-                runstatement(sqlstatement: "insert into tickets (showid, userid) values (2, 2)")
+                runstatement(sqlstatement: "insert into tickets (showid, userid) values (1, 1);")
+                runstatement(sqlstatement: "insert into tickets (showid, userid) values (2, 2);")
+                runstatement(sqlstatement: "insert into tickets (showid, userid) values (1, 2);")
+                runstatement(sqlstatement: "insert into tickets (showid, userid) values (1, 2);")
+                runstatement(sqlstatement: "insert into tickets (showid, userid) values (2, 2);")
+                runstatement(sqlstatement: "insert into tickets (showid, userid) values (2, 2);")
                 
             }
             connectiontoFMDB.close()

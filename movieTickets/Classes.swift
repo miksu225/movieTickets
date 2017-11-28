@@ -45,16 +45,32 @@ struct Config : Codable {
 }
 
 class Show {
-    var theaterid : Int
+    var showid : Int
+    var theater : Theater
     var startday : String
     var starttime : String
     var endtime : String
+    var seatstaken : Int
     
-    init(theaterid : Int, startday: String, starttime : String, endtime : String) {
-        self.theaterid = theaterid
+    init(showid : Int, theater : Theater, startday: String, starttime : String, endtime : String, seatstaken : Int) {
+        self.showid = showid
+        self.theater = theater
         self.startday = startday
         self.starttime = starttime
         self.endtime = endtime
+        self.seatstaken = seatstaken
+    }
+}
+
+class Theater {
+    var theaterid : Int
+    var name : String
+    var seatstotal : Int
+    
+    init(theaterid : Int, name : String, seatstotal : Int) {
+        self.theaterid = theaterid
+        self.name = name
+        self.seatstotal = seatstotal
     }
 }
 
