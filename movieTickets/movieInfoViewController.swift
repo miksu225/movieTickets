@@ -10,8 +10,8 @@ import UIKit
 
 class movieInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    //let db = Db.shared()
-    let db = Db("moviedatabase.db")
+    let db = Db.shared()
+    //let db = Db("moviedatabase.db")
     var movie : Movie = Movie()
     
     var movieImage : UIImage  = UIImage()
@@ -40,7 +40,7 @@ class movieInfoViewController: UIViewController, UITableViewDataSource, UITableV
             
             if db.open() {
                 
-                let resultset : FMResultSet = db.selectstatement(sqlstatement: "select * from shows,theaters where shows.theaterid = theaters.theaterid and movieid = \(movie.id);")!
+                let resultset : FMResultSet = db.selectstatement(sqlstatement: "select * from shows,theaters where shows.theaterid = theaters.theaterid and movieid = \(movie.id) order by startday, starttime asc;")!
                 
                 while resultset.next() {
                     let resultset2 : FMResultSet = db.selectstatement(sqlstatement: "select count(showid) as seatstaken from tickets where showid = \(Int(resultset.int(forColumn: "showid")))")!

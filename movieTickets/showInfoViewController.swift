@@ -10,8 +10,8 @@ import UIKit
 
 class showInfoViewController: UIViewController {
     
-    //let db = Db.shared()
-    let db = Db("moviedatabase.db")
+    let db = Db.shared()
+    //let db = Db("moviedatabase.db")
     var show : Show = Show(showid: 0, theater: Theater(theaterid: 0, name: "", seatstotal: 0), startday: "", starttime: "", endtime: "", seatstaken: 0)
     var theater : Theater = Theater(theaterid: 0, name: "", seatstotal: 0)
     var seatsleft : Int = 0
@@ -29,7 +29,7 @@ class showInfoViewController: UIViewController {
         
         if db.exists() {
             if db.open() {
-                let resultset : FMResultSet = db.selectstatement(sqlstatement: "select * from theaters where theaterid = \(show.theater.theaterid)")!
+                let resultset : FMResultSet = db.selectstatement(sqlstatement: "select * from theaters where theaterid = \(show.theater.theaterid);")!
                 
                 while resultset.next() {
                     theater.theaterid = Int(resultset.int(forColumn: "theaterid"))
@@ -67,14 +67,19 @@ class showInfoViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        let target = segue.destination as! seatSelectViewController
+        
+        target.show = show
+        
     }
-    */
+    
 
 }

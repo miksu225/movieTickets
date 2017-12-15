@@ -9,10 +9,11 @@
 import Foundation
 
 class Db {
-    //private static let sharedDB = Db("moviedatabase.db")
+    private static let sharedDB = Db("moviedatabase.db")
     var dbname : String
     var dbpath : String
     private var connectiontoFMDB : FMDatabase
+    
     
     
       init(_ dbname: String) {
@@ -23,16 +24,21 @@ class Db {
         self.dbpath = pathdummy[0].appendingPathComponent(dbname).path
         NSLog(dbpath)
         self.connectiontoFMDB = FMDatabase(path: dbpath)
+        NSLog("db init debug test: " + connectiontoFMDB.debugDescription)
         if !exists() {
-           createTablesAndData()
+            if connectiontoFMDB.open() {
+                createTablesAndData()
+            }
+            connectiontoFMDB.close()
+           
         }
         
  
     }
     
-   /* class func shared() -> Db {
+    class func shared() -> Db {
         return sharedDB
-    }*/
+    }
     
     func exists() -> Bool {
         if FileManager.default.fileExists(atPath: dbpath) {
@@ -45,10 +51,21 @@ class Db {
         }
     }
     func open() -> Bool {
+        if connectiontoFMDB == FMDatabase(path: dbpath) {
+            print("yhteys on olemassa")
+        }
+        else {
+            print("yhteys ei ole olemassa")
+            print("luodaan uusi yhteys")
+            connectiontoFMDB = FMDatabase(path: dbpath)
+        }
+        
         if connectiontoFMDB.open() {
+            print("database open")
             return true
         }
         else {
+            print("database not open")
             return false
         }
     }
@@ -58,7 +75,10 @@ class Db {
     }
     
     func runstatement(sqlstatement: String) {
+        NSLog("nslog test: " + connectiontoFMDB.debugDescription)
+        NSLog(sqlstatement)
         connectiontoFMDB.executeStatements(sqlstatement)
+        
          NSLog(connectiontoFMDB.debugDescription)
     }
     
@@ -86,7 +106,7 @@ class Db {
                 
                 runstatement(sqlstatement: "create table if not exists theaters (theaterid integer primary key autoincrement, name text, seatstotal integer);")
                 
-                runstatement(sqlstatement: "create table if not exists tickets (ticketid integer primary key autoincrement, showid integer, userid integer, foreign key (showid) references shows (showid));")
+                runstatement(sqlstatement: "create table if not exists tickets (ticketid integer primary key autoincrement, showid integer, seat integer, seatrow integer, userid integer, foreign key (showid) references shows (showid));")
                 
                 print("taulut luotu")
                 
@@ -112,12 +132,12 @@ class Db {
                 runstatement(sqlstatement: "insert into shows (movieid, theaterid, startday, starttime, endtime) values (297762, 1, '2017-01-01', '17:00:00', '19:00:00');")
                 
                 //tickets
-                runstatement(sqlstatement: "insert into tickets (showid, userid) values (1, 1);")
-                runstatement(sqlstatement: "insert into tickets (showid, userid) values (2, 2);")
-                runstatement(sqlstatement: "insert into tickets (showid, userid) values (1, 2);")
-                runstatement(sqlstatement: "insert into tickets (showid, userid) values (1, 2);")
-                runstatement(sqlstatement: "insert into tickets (showid, userid) values (2, 2);")
-                runstatement(sqlstatement: "insert into tickets (showid, userid) values (2, 2);")
+                runstatement(sqlstatement: "insert into tickets (showid, seat, seatrow, userid) values (1, 5, 2, 1);")
+                runstatement(sqlstatement: "insert into tickets (showid, seat, seatrow, userid) values (2, 3, 1, 2);")
+                runstatement(sqlstatement: "insert into tickets (showid, seat, seatrow, userid) values (1, 5, 4, 2);")
+                runstatement(sqlstatement: "insert into tickets (showid, seat, seatrow, userid) values (1, 1, 2, 2);")
+                runstatement(sqlstatement: "insert into tickets (showid, seat, seatrow, userid) values (2, 1, 3, 2);")
+                runstatement(sqlstatement: "insert into tickets (showid, seat, seatrow, userid) values (2, 2, 3, 2);")
                 
             }
             connectiontoFMDB.close()

@@ -74,4 +74,26 @@ class Theater {
     }
 }
 
+class Seat {
+    var seat : seatButton
+    var seatnumber : Int
+    var seatrow : Int
+    
+    init(seat : seatButton, seatnumber : Int, seatrow : Int) {
+        self.seat = seat
+        self.seatnumber = seatnumber
+        self.seatrow = seatrow
+    }
+}
+
+class Seat2 {
+    var seatnumber : Int
+    var seatrow : Int
+    
+    init(_ seatnumber : Int, _ seatrow : Int) {
+        self.seatnumber = seatnumber
+        self.seatrow = seatrow
+    }
+}
+
 

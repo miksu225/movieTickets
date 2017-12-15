@@ -11,8 +11,8 @@ import UIKit
 
 class moviesListTableViewController: UITableViewController{
     
-    //var db = Db.shared()
-    var db = Db("moviedatabase.db")
+    let db = Db.shared()
+    //var db = Db("moviedatabase.db")
     var moviesId : [Int] = []
     var movies : [Movie] = []
     var movieImages : [UIImage] = []
@@ -64,6 +64,8 @@ class moviesListTableViewController: UITableViewController{
             }
             db.close()
         }
+        
+    
         
             self.webrequest(completion: {
                 config in

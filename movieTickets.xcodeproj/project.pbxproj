@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC1C73321FCEB1B2001CB625 /* seatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C73311FCEB1B2001CB625 /* seatButton.swift */; };
+		EC35420A1FE2C311009518AA /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3542091FE2C311009518AA /* testViewController.swift */; };
 		ECA846161FBC4243003C43F1 /* moviesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA846151FBC4243003C43F1 /* moviesListTableViewController.swift */; };
 		ECA846181FBC42F8003C43F1 /* movieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA846171FBC42F8003C43F1 /* movieTableViewCell.swift */; };
 		ECA8461A1FBC4FA8003C43F1 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA846191FBC4FA8003C43F1 /* Classes.swift */; };
+		ECC373451FCD67A2000AB358 /* seatSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC373441FCD67A2000AB358 /* seatSelectViewController.swift */; };
 		ECD6B2631FB3125C00D2529C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B2621FB3125C00D2529C /* AppDelegate.swift */; };
 		ECD6B2681FB3125C00D2529C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECD6B2661FB3125C00D2529C /* Main.storyboard */; };
 		ECD6B26A1FB3125C00D2529C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD6B2691FB3125C00D2529C /* Assets.xcassets */; };
@@ -26,9 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC1C73311FCEB1B2001CB625 /* seatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seatButton.swift; sourceTree = "<group>"; };
+		EC3542091FE2C311009518AA /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		ECA846151FBC4243003C43F1 /* moviesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moviesListTableViewController.swift; sourceTree = "<group>"; };
 		ECA846171FBC42F8003C43F1 /* movieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieTableViewCell.swift; sourceTree = "<group>"; };
 		ECA846191FBC4FA8003C43F1 /* Classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
+		ECC373441FCD67A2000AB358 /* seatSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seatSelectViewController.swift; sourceTree = "<group>"; };
 		ECD6B25F1FB3125C00D2529C /* movieTickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movieTickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECD6B2621FB3125C00D2529C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECD6B2671FB3125C00D2529C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,6 +98,9 @@
 				ECA846171FBC42F8003C43F1 /* movieTableViewCell.swift */,
 				ECD6B2861FB31EED00D2529C /* Db.swift */,
 				ECD6B2661FB3125C00D2529C /* Main.storyboard */,
+				EC3542091FE2C311009518AA /* testViewController.swift */,
+				EC1C73311FCEB1B2001CB625 /* seatButton.swift */,
+				ECC373441FCD67A2000AB358 /* seatSelectViewController.swift */,
 				ECE67A751FC5775C007C8CAA /* showInfoViewController.swift */,
 				ECD6B2691FB3125C00D2529C /* Assets.xcassets */,
 				ECD6B26B1FB3125C00D2529C /* LaunchScreen.storyboard */,
@@ -194,7 +203,9 @@
 			files = (
 				ECD6B2871FB31EED00D2529C /* Db.swift in Sources */,
 				ECD6B2821FB31E7000D2529C /* FMDatabaseQueue.m in Sources */,
+				EC35420A1FE2C311009518AA /* testViewController.swift in Sources */,
 				ECA8461A1FBC4FA8003C43F1 /* Classes.swift in Sources */,
+				EC1C73321FCEB1B2001CB625 /* seatButton.swift in Sources */,
 				ECE8AEFA1FC2F22B00A363C9 /* showsListTableViewCell.swift in Sources */,
 				ECD6B2811FB31E7000D2529C /* FMDatabasePool.m in Sources */,
 				ECA846161FBC4243003C43F1 /* moviesListTableViewController.swift in Sources */,
@@ -205,6 +216,7 @@
 				ECE67A761FC5775C007C8CAA /* showInfoViewController.swift in Sources */,
 				ECD6B2831FB31E7000D2529C /* FMResultSet.m in Sources */,
 				ECE8AEF81FC2D12200A363C9 /* movieInfoViewController.swift in Sources */,
+				ECC373451FCD67A2000AB358 /* seatSelectViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
