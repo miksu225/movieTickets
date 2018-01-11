@@ -18,7 +18,7 @@ class moviesListTableViewController: UITableViewController{
     var movieImages : [UIImage] = []
     var config : Images = Images()
     var showsNext : [Show] = []
-    let api_key = ""
+    let api_key = "{your api key here}"
     let urlSession = URLSession.shared
     let dispatchGroup = DispatchGroup()
     let decoder = JSONDecoder()
@@ -306,8 +306,11 @@ class moviesListTableViewController: UITableViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
         let target = segue.destination as! movieInfoViewController
+        
+        let backItem = UIBarButtonItem()
+        backItem.title = "Movie select"
+        navigationItem.backBarButtonItem = backItem
         
         
         let movie = self.tableView.indexPathForSelectedRow?.row

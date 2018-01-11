@@ -10,16 +10,19 @@ import UIKit
 
 class seatSelectViewController: UIViewController {
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     let db = Db.shared()
     //let db = Db("moviedatabase.db")
     var seats : [Seat] = []
-     var show : Show = Show(showid: 1, theater: Theater(theaterid: 0, name: "", seatstotal: 0), startday: "", starttime: "", endtime: "", seatstaken: 0)
+     var show : Show = Show(showid: 0, theater: Theater(theaterid: 0, name: "", seatstotal: 0), startday: "", starttime: "", endtime: "", seatstaken: 0)
     
 
     @IBAction func rewindToShowInfo(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    @IBAction func saveSeat(_ sender: UIButton) {
+    
+    
+     func saveSeat() {
         let selectedSeats = getSelectedSeats()
         //print("valmistaudutaan")
         if db.exists() {
@@ -39,11 +42,20 @@ class seatSelectViewController: UIViewController {
             }
             db.close()
         }
+        print("seatstaken: " + String(show.seatstaken))
+        show.seatstaken += 1;
+        print("seatstaken: " + String(show.seatstaken))
         getSeatsTaken()
     }
     
+    @IBAction func CancelButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func seatButtonPressed(_ sender: seatButton) {
-        
+        print("seat pressed")
+        print("seatstotal: " + String(show.theater.seatstotal))
+        print("id: " + String(show.showid))
        /* if sender.backgroundColor == UIColor.green {
             sender.backgroundColor = UIColor.yellow
         }
@@ -52,7 +64,8 @@ class seatSelectViewController: UIViewController {
         }*/
         
         // when selecting new seat, go through all rowviews and seatButtons and change color back to green if seat is selected (color orange) and it is not already taken (color red)
-        if sender.fillColor != UIColor.red {
+        //using UIViews as rows
+        /*if sender.fillColor != UIColor.red {
             for view in self.view.subviews {
                 //find UIViews (rows)
                 if let rowview = view as? UIView {
@@ -71,8 +84,30 @@ class seatSelectViewController: UIViewController {
                 }
                 
             }
-        }
+        }*/
         
+        // when selecting new seat, go through all rowviews and seatButtons and change color back to green if seat is selected (color orange) and it is not already taken (color red)
+        //using StackViews as rows
+        if sender.fillColor != UIColor.red {
+            for view in self.view.subviews {
+                //find StackViews (rows)
+                if let rowstack = view as? UIStackView {
+                    for button in rowstack.subviews {
+                        //find seatButtons
+                        if let seat = button as? seatButton {
+                            if seat != sender {
+                                if seat.fillColor == UIColor.orange{
+                                    seat.fillColor = UIColor.green
+                                    seat.borderColor = UIColor.green
+                                    seat.setNeedsDisplay()
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
         
         if  sender.fillColor != UIColor.red {
             if sender.fillColor == UIColor.green{
@@ -90,10 +125,14 @@ class seatSelectViewController: UIViewController {
     }
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for view in self.view.subviews {
+        
+        // using UIViews as rows
+        /*for view in self.view.subviews {
             //find UIViews (rows)
             if let rowview = view as? UIView {
                 for button in rowview.subviews {
@@ -104,6 +143,20 @@ class seatSelectViewController: UIViewController {
                 }
             }
             
+        }*/
+        
+        //using stackviews as rows
+        for view in self.view.subviews {
+            //find StackViews (rows)
+            if let rowstack = view as? UIStackView {
+                for button in rowstack.subviews {
+                    // find seatButtons
+                    if let seat = button as? seatButton {
+                        seats.append(Seat(seat: seat, seatnumber: Int(seat.currentTitle!)!, seatrow: (seat.superview?.tag)!))
+                    }
+                    
+                }
+            }
         }
         getSeatsTaken()
         
@@ -148,14 +201,25 @@ class seatSelectViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
+            NSLog("Not a save button")
+            return
+        }
+        saveSeat()
+        
+        let target = segue.destination as! showInfoViewController
+        
+        target.show = show
     }
-    */
+    
 
 }

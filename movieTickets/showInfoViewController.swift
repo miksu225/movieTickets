@@ -13,7 +13,7 @@ class showInfoViewController: UIViewController {
     let db = Db.shared()
     //let db = Db("moviedatabase.db")
     var show : Show = Show(showid: 0, theater: Theater(theaterid: 0, name: "", seatstotal: 0), startday: "", starttime: "", endtime: "", seatstaken: 0)
-    var theater : Theater = Theater(theaterid: 0, name: "", seatstotal: 0)
+    //var theater : Theater = Theater(theaterid: 0, name: "", seatstotal: 0)
     var seatsleft : Int = 0
 
     @IBOutlet weak var labelStartDate: UILabel!
@@ -21,27 +21,51 @@ class showInfoViewController: UIViewController {
     @IBOutlet weak var labelEndTime: UILabel!
     @IBOutlet weak var labelSeatsTotal: UILabel!
     @IBOutlet weak var labelSeatsLeft: UILabel!
-    @IBAction func rewindToMovieInfo(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+    
+    @IBAction func unwindToMovieInfo(_ sender: UIStoryboardSegue) {
+        labelSeatsLeft.text = String(show.theater.seatstotal - show.seatstaken)
     }
+    
+    @IBAction func SeatSelectPressed(_ sender: UIButton) {
+        var ncID = ""
+        
+        if show.theater.seatstotal == 90 {
+            ncID = "idNavController90"
+        }
+        else if show.theater.seatstotal == 120 {
+            ncID = "idNavController120"
+        }
+        else {
+            // At the moment only theaters with 90 and 120 seats exists, so use 90 as default
+            ncID = "idNavController90"
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nc = storyboard.instantiateViewController(withIdentifier: ncID) as! seatNavigationController
+        nc.passedshow = show
+        //self.navigationController?.pushViewController(vc, animated: true)
+        self.present(nc, animated:true, completion:nil)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         if db.exists() {
             if db.open() {
                 let resultset : FMResultSet = db.selectstatement(sqlstatement: "select * from theaters where theaterid = \(show.theater.theaterid);")!
                 
                 while resultset.next() {
-                    theater.theaterid = Int(resultset.int(forColumn: "theaterid"))
-                    theater.name = resultset.string(forColumn: "name")!
-                    theater.seatstotal = Int(resultset.int(forColumn: "seatstotal"))
+                    show.theater.theaterid = Int(resultset.int(forColumn: "theaterid"))
+                    show.theater.name = resultset.string(forColumn: "name")!
+                    show.theater.seatstotal = Int(resultset.int(forColumn: "seatstotal"))
                 }
                 
                 
                 let resultset2 : FMResultSet = db.selectstatement(sqlstatement: "select count(showid) as seatstaken from tickets where showid = \(show.showid)")!
                 
                 while resultset2.next() {
-                    seatsleft = theater.seatstotal - Int(resultset2.int(forColumn: "seatstaken"))
+                    seatsleft = show.theater.seatstotal - Int(resultset2.int(forColumn: "seatstaken"))
                 }
                 
             }
@@ -51,9 +75,8 @@ class showInfoViewController: UIViewController {
         labelStartDate.text = show.startday
         labelStartTime.text = show.starttime
         labelEndTime.text = show.endtime
-        labelSeatsTotal.text = String(theater.seatstotal)
+        labelSeatsTotal.text = String(show.theater.seatstotal)
         labelSeatsLeft.text = String(seatsleft)
-        
         
         
         
@@ -72,12 +95,10 @@ class showInfoViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        print("showInfo prepare")
+        let target = segue.destination as! seatNavigationController
         
-        let target = segue.destination as! seatSelectViewController
-        
-        target.show = show
+        target.passedshow = show
         
     }
     

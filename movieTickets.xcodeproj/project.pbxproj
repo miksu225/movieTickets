@@ -23,6 +23,7 @@
 		ECD6B2841FB31E7000D2529C /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B27C1FB31E6F00D2529C /* FMDatabase.m */; };
 		ECD6B2851FB31E7000D2529C /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B27F1FB31E6F00D2529C /* FMDatabaseAdditions.m */; };
 		ECD6B2871FB31EED00D2529C /* Db.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6B2861FB31EED00D2529C /* Db.swift */; };
+		ECE64C3F20076359006DDC13 /* seatNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE64C3E20076359006DDC13 /* seatNavigationController.swift */; };
 		ECE67A761FC5775C007C8CAA /* showInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE67A751FC5775C007C8CAA /* showInfoViewController.swift */; };
 		ECE8AEF81FC2D12200A363C9 /* movieInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8AEF71FC2D12200A363C9 /* movieInfoViewController.swift */; };
 		ECE8AEFA1FC2F22B00A363C9 /* showsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8AEF91FC2F22B00A363C9 /* showsListTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 		ECD6B27F1FB31E6F00D2529C /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDatabaseAdditions.m"; sourceTree = "<group>"; };
 		ECD6B2801FB31E6F00D2529C /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = "../../../../../Downloads/fmdb-master-2/src/fmdb/FMDatabaseAdditions.h"; sourceTree = "<group>"; };
 		ECD6B2861FB31EED00D2529C /* Db.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Db.swift; sourceTree = "<group>"; };
+		ECE64C3E20076359006DDC13 /* seatNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seatNavigationController.swift; sourceTree = "<group>"; };
 		ECE67A751FC5775C007C8CAA /* showInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showInfoViewController.swift; sourceTree = "<group>"; };
 		ECE8AEF71FC2D12200A363C9 /* movieInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieInfoViewController.swift; sourceTree = "<group>"; };
 		ECE8AEF91FC2F22B00A363C9 /* showsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				ECA846171FBC42F8003C43F1 /* movieTableViewCell.swift */,
 				ECD6B2861FB31EED00D2529C /* Db.swift */,
 				ECD6B2661FB3125C00D2529C /* Main.storyboard */,
+				ECE64C3E20076359006DDC13 /* seatNavigationController.swift */,
 				EC3542091FE2C311009518AA /* testViewController.swift */,
 				EC1C73311FCEB1B2001CB625 /* seatButton.swift */,
 				ECC373441FCD67A2000AB358 /* seatSelectViewController.swift */,
@@ -215,6 +218,7 @@
 				ECA846181FBC42F8003C43F1 /* movieTableViewCell.swift in Sources */,
 				ECE67A761FC5775C007C8CAA /* showInfoViewController.swift in Sources */,
 				ECD6B2831FB31E7000D2529C /* FMResultSet.m in Sources */,
+				ECE64C3F20076359006DDC13 /* seatNavigationController.swift in Sources */,
 				ECE8AEF81FC2D12200A363C9 /* movieInfoViewController.swift in Sources */,
 				ECC373451FCD67A2000AB358 /* seatSelectViewController.swift in Sources */,
 			);
