@@ -14,8 +14,6 @@ class seatNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("seatnavigaatiossa")
-        print("showid: " + String(passedshow.showid))
         
         
        let vc = self.childViewControllers.first as! seatSelectViewController

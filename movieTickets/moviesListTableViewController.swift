@@ -7,11 +7,13 @@
 //
 
 import UIKit
-
+import Firebase
+import GoogleSignIn
 
 class moviesListTableViewController: UITableViewController{
     
     let db = Db.shared()
+    let signs = Signs()
     //var db = Db("moviedatabase.db")
     var moviesId : [Int] = []
     var movies : [Movie] = []
@@ -22,7 +24,13 @@ class moviesListTableViewController: UITableViewController{
     let urlSession = URLSession.shared
     let dispatchGroup = DispatchGroup()
     let decoder = JSONDecoder()
-
+    
+    @IBAction func signOutPressed(_ sender: UIBarButtonItem) {
+        
+        signs.signOut(self.storyboard)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,8 +78,7 @@ class moviesListTableViewController: UITableViewController{
             self.webrequest(completion: {
                 config in
                 self.config = config
-                print(self.config.images.secure_base_url)
-                //print(self.config.images.poster_sizes)
+                //print(self.config.images.secure_base_url)
             })
             for id in self.moviesId {
                 self.dispatchGroup.enter()
@@ -79,13 +86,13 @@ class moviesListTableViewController: UITableViewController{
                     movie in
                     //append Movie
                     self.movies.append(movie)
-                    print(movie.original_title + " lisätty")
+                    //print(movie.original_title + " lisätty")
                     
                     //append UIImage
                     self.webrequest(self.config.images.secure_base_url + self.config.images.poster_sizes[0] + movie.poster_path, completion: {image in
                         self.movieImages.append(image)
-                        print("kuva lisätty arrayhin")
-                        print(image)
+                        //print("kuva lisätty arrayhin")
+                        //print(image)
                         self.dispatchGroup.leave()
                         
                     })
@@ -97,13 +104,12 @@ class moviesListTableViewController: UITableViewController{
          self.dispatchGroup.wait()
         
         dispatchGroup.notify(queue: .main) {
-                print("loadataan")
            
                 self.tableView.reloadData()
             
             }
       
-        
+
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -123,12 +129,12 @@ class moviesListTableViewController: UITableViewController{
         
         let dataTask = urlSession.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print("requesti ei toiminut!!!")
+                print("request not working!!!")
                 print(error)
                 return
             }
             else {
-                print("requesti toimi")
+                print("request worked")
                 let httpResponse = response as? HTTPURLResponse
                 // print(httpResponse)
                 
@@ -155,12 +161,12 @@ class moviesListTableViewController: UITableViewController{
         
         let dataTask = urlSession.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print("requesti ei toiminut!!!")
+                print("request not working!!!")
                 print(error)
                 return
             }
             else {
-                print("requesti toimi")
+                print("request worked")
                 let httpResponse = response as? HTTPURLResponse
                 // print(httpResponse)
                 
@@ -187,12 +193,12 @@ class moviesListTableViewController: UITableViewController{
 
         let dataTask = urlSession.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print("requesti ei toiminut!!!")
+                print("request not working!!!")
                 print(error)
                 return
             }
             else {
-                print("requesti toimi")
+                print("request worked")
                 let httpResponse = response as? HTTPURLResponse
                // print(httpResponse)
 
@@ -230,13 +236,12 @@ class moviesListTableViewController: UITableViewController{
         
         
 
-        print(1)
         if !movies.isEmpty {
             cell.labelMovie.text = movies[indexPath.row].original_title
             cell.labelStartDate.text = showsNext[indexPath.row].startday
             cell.labelStartTime.text = showsNext[indexPath.row].starttime
             cell.labelTheater.text = showsNext[indexPath.row].theater.name
-            cell.labelSeatsLeft.text = String(showsNext[indexPath.row].theater.seatstotal - showsNext[indexPath.row].seatstaken)
+            /*cell.labelSeatsLeft.text = String(showsNext[indexPath.row].theater.seatstotal - showsNext[indexPath.row].seatstaken)*/
         }
 
 
@@ -255,7 +260,6 @@ class moviesListTableViewController: UITableViewController{
         
 
         // Configure the cell...
-        print(2)
         return cell
         
         

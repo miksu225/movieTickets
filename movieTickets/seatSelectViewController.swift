@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class seatSelectViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     let db = Db.shared()
-    //let db = Db("moviedatabase.db")
     var seats : [Seat] = []
      var show : Show = Show(showid: 0, theater: Theater(theaterid: 0, name: "", seatstotal: 0), startday: "", starttime: "", endtime: "", seatstaken: 0)
     
@@ -24,28 +26,27 @@ class seatSelectViewController: UIViewController {
     
      func saveSeat() {
         let selectedSeats = getSelectedSeats()
-        //print("valmistaudutaan")
-        if db.exists() {
-           
-            //print("olemassa")
-            if db.open() {
-                
-                print("avataan")
-                for seat in selectedSeats {
-                    print(show.showid)
-                    print(seat.seatnumber)
-                    print(seat.seatrow)
-                    db.runstatement(sqlstatement: "insert into tickets (showid, seat, seatrow, userid) values (\(show.showid), \(seat.seatnumber), \(seat.seatrow), 1);")
-                    //print("lisätään")
+
+        if selectedSeats.count > 0 {
+            if db.exists() {
+                if db.open() {
+
+                    for seat in selectedSeats {
+                        print(show.showid)
+                        print(seat.seatnumber)
+                        print(seat.seatrow)
+                        db.runstatement(sqlstatement: "insert into tickets (showid, seat, seatrow, userid) values (\(show.showid), \(seat.seatnumber), \(seat.seatrow), 1);")
+
+                    }
+                    
                 }
-                
+                db.close()
             }
-            db.close()
+            show.seatstaken += 1;
+            getSeatsTaken()
+            
         }
-        print("seatstaken: " + String(show.seatstaken))
-        show.seatstaken += 1;
-        print("seatstaken: " + String(show.seatstaken))
-        getSeatsTaken()
+        
     }
     
     @IBAction func CancelButtonPressed(_ sender: UIBarButtonItem) {
@@ -56,35 +57,7 @@ class seatSelectViewController: UIViewController {
         print("seat pressed")
         print("seatstotal: " + String(show.theater.seatstotal))
         print("id: " + String(show.showid))
-       /* if sender.backgroundColor == UIColor.green {
-            sender.backgroundColor = UIColor.yellow
-        }
-        else if sender.backgroundColor == UIColor.yellow{
-            sender.backgroundColor = UIColor.green
-        }*/
-        
-        // when selecting new seat, go through all rowviews and seatButtons and change color back to green if seat is selected (color orange) and it is not already taken (color red)
-        //using UIViews as rows
-        /*if sender.fillColor != UIColor.red {
-            for view in self.view.subviews {
-                //find UIViews (rows)
-                if let rowview = view as? UIView {
-                    for button in rowview.subviews {
-                        //find seatButtons
-                        if let seat = button as? seatButton {
-                            if seat != sender {
-                                if seat.fillColor == UIColor.orange{
-                                    seat.fillColor = UIColor.green
-                                    seat.borderColor = UIColor.green
-                                    seat.setNeedsDisplay()
-                                }
-                            }
-                        }
-                    }
-                }
-                
-            }
-        }*/
+     
         
         // when selecting new seat, go through all rowviews and seatButtons and change color back to green if seat is selected (color orange) and it is not already taken (color red)
         //using StackViews as rows
@@ -130,20 +103,7 @@ class seatSelectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // using UIViews as rows
-        /*for view in self.view.subviews {
-            //find UIViews (rows)
-            if let rowview = view as? UIView {
-                for button in rowview.subviews {
-                    //find seatButtons
-                    if let seat = button as? seatButton {
-                        seats.append(Seat(seat: seat, seatnumber: Int(seat.currentTitle!)!, seatrow: (seat.superview?.tag)!))
-                    }
-                }
-            }
-            
-        }*/
+    
         
         //using stackviews as rows
         for view in self.view.subviews {

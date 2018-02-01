@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class movieInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let db = Db.shared()
+    let signs = Signs()
     //let db = Db("moviedatabase.db")
     var movie : Movie = Movie()
     
@@ -25,10 +28,37 @@ class movieInfoViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var navBarMovieInfo: UINavigationBar!
     
     
-
+    
+    @IBOutlet weak var constTableViewHeight: NSLayoutConstraint!
+    
     @IBAction func rewindToMovieList(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    /*override func viewWillAppear(_ animated: Bool) {
+        
+        var tableViewHeight:CGFloat = 0;
+        let rowsIndex = tableView.indexPathsForVisibleRows
+        //get height for each rowcell in tableview
+        print("CELLS HEIGHT !!!")
+        print(rowsIndex)
+        for cell in tableView.visibleCells {
+            print("CELL HEIGHT")
+            print(cell.bounds.height)
+            tableViewHeight += cell.bounds.height
+        }
+        print(tableViewHeight)
+        //set tableview height same as total height of rows
+        constTableViewHeight.constant = tableViewHeight
+        
+    }
+    */
+    @IBAction func signOutPressed(_ sender: UIBarButtonItem) {
+        
+        signs.signOut(self.storyboard)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         labelMovieTitle.text = movie.original_title
@@ -39,7 +69,7 @@ class movieInfoViewController: UIViewController, UITableViewDataSource, UITableV
         if db.exists() {
             
             if db.open() {
-                
+                // get movie info
                 let resultset : FMResultSet = db.selectstatement(sqlstatement: "select * from shows,theaters where shows.theaterid = theaters.theaterid and movieid = \(movie.id) order by startday, starttime asc;")!
                 
                 while resultset.next() {
@@ -59,20 +89,7 @@ class movieInfoViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                 }
                 
-                
 
-              /*
-                let resultset : FMResultSet? = db.selectstatement(sqlstatement: "select * from shows;")
-                
-                
-               while (resultset?.next())! {
-                    shows.append(Show(
-                        theaterid: Int(resultset.int(forColumn: "theaterid")),
-                        startday: resultset.string(forColumn: "startday"),
-                        starttime: resultset.string(forColumn: "starttime"),
-                        endtime: resultset.string(forColumn: "endtime"))
-                    
-                }*/
             }
             db.close()
         }

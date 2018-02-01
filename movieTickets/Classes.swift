@@ -7,7 +7,9 @@
 //
 
 import Foundation
-
+import UIKit
+import Firebase
+import GoogleSignIn
 
 struct Movie : Codable {
     let id : Int
@@ -93,6 +95,21 @@ class Seat2 {
     init(_ seatnumber : Int, _ seatrow : Int) {
         self.seatnumber = seatnumber
         self.seatrow = seatrow
+    }
+}
+
+class Signs {
+    func signOut(_ storyboard : UIStoryboard?) {
+        do {
+            try Auth.auth().signOut()
+            
+            let signInPage = storyboard?.instantiateViewController(withIdentifier: "idLoginViewController") as! LogInViewController
+            let appDelegate = UIApplication.shared.delegate
+            appDelegate?.window??.rootViewController = signInPage
+            
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
 }
 

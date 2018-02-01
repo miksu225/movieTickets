@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class showInfoViewController: UIViewController {
     
     let db = Db.shared()
-    //let db = Db("moviedatabase.db")
+    let signs = Signs()
+    
     var show : Show = Show(showid: 0, theater: Theater(theaterid: 0, name: "", seatstotal: 0), startday: "", starttime: "", endtime: "", seatstaken: 0)
-    //var theater : Theater = Theater(theaterid: 0, name: "", seatstotal: 0)
+   
     var seatsleft : Int = 0
 
     @IBOutlet weak var labelStartDate: UILabel!
@@ -35,18 +38,26 @@ class showInfoViewController: UIViewController {
         else if show.theater.seatstotal == 120 {
             ncID = "idNavController120"
         }
+        else if show.theater.seatstotal == 50 {
+            ncID = "idNavController50"
+        }
         else {
-            // At the moment only theaters with 90 and 120 seats exists, so use 90 as default
+            //use 90 as default
             ncID = "idNavController90"
         }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nc = storyboard.instantiateViewController(withIdentifier: ncID) as! seatNavigationController
         nc.passedshow = show
-        //self.navigationController?.pushViewController(vc, animated: true)
         self.present(nc, animated:true, completion:nil)
     }
     
+    
+    
+    @IBAction func signOutPressed(_ sender: UIBarButtonItem) {
+        
+        signs.signOut(self.storyboard)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +104,7 @@ class showInfoViewController: UIViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+   /* // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("showInfo prepare")
         let target = segue.destination as! seatNavigationController
@@ -101,6 +112,6 @@ class showInfoViewController: UIViewController {
         target.passedshow = show
         
     }
-    
+    */
 
 }
